@@ -1,0 +1,22 @@
+.quiz {
+    border: 1px solid blueviolet;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.quiz__length {
+    border-bottom: 1px solid blueviolet;
+}
+
+.quiz__image img {
+    width:100%
+}
+
+.quiz__buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz__btn {
+    background-color: red;
+}

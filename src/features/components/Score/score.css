@@ -1,0 +1,14 @@
+.score-modal {
+    position: absolute;
+    left: 45%;
+    top:35%;
+    background-color: #1976d2;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    flex-direction: column;
+}
