@@ -1,10 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {fetchQuestions} from "../../api/api";
+import {createNewQuestion, fetchQuestions} from "../../api/api";
 import {IQuestion} from "../../models/questions";
 
 
 export interface quizState {
-    status: 'idle' | 'loading' | 'failed';
+    isLoading: boolean
     questions: IQuestion[]
     currentQuestion: IQuestion | null
     currentQuestionCounter: number
@@ -14,11 +14,11 @@ export interface quizState {
 
 const initialState: quizState = {
     questions: [],
-    status: 'idle',
     currentQuestion: null,
     currentQuestionCounter: 0,
     score: 0,
-    hasAnswer:false
+    hasAnswer:false,
+    isLoading:false
 };
 
 export const getQuestions = createAsyncThunk(
@@ -28,6 +28,14 @@ export const getQuestions = createAsyncThunk(
         return response.data;
     }
 );
+
+export const createQuestion = createAsyncThunk(
+    'quiz/createQuestion',
+    async (values: IQuestion) => {
+        const response = await createNewQuestion(values)
+        return values
+    }
+)
 
 export const quizSlice = createSlice({
     name:'quiz',
@@ -56,11 +64,18 @@ export const quizSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
+        builder.addCase(getQuestions.pending, (state) => {
+            state.isLoading = true
+        })
         builder.addCase(getQuestions.fulfilled, (state, {payload}) => {
             // @ts-ignore
             state.questions = payload
+            state.isLoading = false
             state.currentQuestion = state.questions[state.currentQuestionCounter]
-            })
+        })
+        builder.addCase(createQuestion.fulfilled, (state, {payload}) => {
+            state.questions.push(payload)
+        })
     },
 });
 

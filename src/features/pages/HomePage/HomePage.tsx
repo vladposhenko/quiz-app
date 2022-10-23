@@ -10,10 +10,8 @@ const HomePage = () => {
     useEffect(() => {
         dispatch(getQuestions())
     },[])
-    console.log(questions)
     return (
         <div>
-            <p>Home</p>
             <Quiz questions={questions}/>
         </div>
     );

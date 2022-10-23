@@ -1,0 +1,19 @@
+.form {
+    background-color: #fff;
+    width: 50%;
+}
+
+.form-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.form-box {
+    margin-top: 30px;
+}
+
+.box-mirror {
+    flex-direction: column;
+}

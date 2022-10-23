@@ -1,11 +1,11 @@
 .quiz {
-    border: 1px solid blueviolet;
+    border: 1px solid #42a5f5;
     width: 50%;
     margin: 0 auto;
 }
 
 .quiz__length {
-    border-bottom: 1px solid blueviolet;
+    border-bottom: 1px solid #42a5f5;
 }
 
 .quiz__image img {
@@ -17,6 +17,10 @@
     flex-direction: column;
 }
 
-.quiz__btn {
-    background-color: red;
+
+.quiz__component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
 }

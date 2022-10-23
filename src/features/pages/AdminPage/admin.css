@@ -1,0 +1,6 @@
+
+.admin-page__container {
+    display: flex !important;
+    justify-content: center;
+    gap:150px
+}

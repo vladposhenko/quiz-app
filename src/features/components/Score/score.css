@@ -1,9 +1,9 @@
 .score-modal {
     position: absolute;
-    left: 45%;
+    left: 33%;
     top:35%;
-    background-color: #1976d2;
-    width: 200px;
+    background-color: #42a5f5;
+    width: 500px;
     height: 200px;
     text-align: center;
     display: flex;
