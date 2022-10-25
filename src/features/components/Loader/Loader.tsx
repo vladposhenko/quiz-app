@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {FC} from 'react';
 import loader from '../../../images/loader.gif'
-const Loader = () => {
+import './loader.css'
+
+interface LoaderProps {
+    toDarkBg?: string
+}
+
+const Loader: FC<LoaderProps> = ({ toDarkBg }) => {
     return (
-        <div>
-            <img src={loader} alt=""/>
+        <div className={toDarkBg ? 'loader-all__page' : 'loader'}>
+            <img src={loader}/>
+            {toDarkBg &&
+                <p>{toDarkBg}...</p>
+            }
         </div>
     );
 };

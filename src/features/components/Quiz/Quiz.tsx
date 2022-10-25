@@ -22,7 +22,7 @@ const Quiz: FC<QuizProps> = ({ questions }) => {
     const dispatch = useAppDispatch()
 
     return (
-        <div className="quiz__component">
+        <Box  className="quiz__component">
             {isLoading
             ? <Loader/>
             : (currentQuestionCounter === questions?.length
@@ -34,7 +34,7 @@ const Quiz: FC<QuizProps> = ({ questions }) => {
                                hasAnswer={hasAnswer}
                     />)
             }
-        </div>
+        </Box>
     );
 };
 

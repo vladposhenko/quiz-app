@@ -1,5 +1,4 @@
 .form {
-    background-color: #fff;
     width: 50%;
 }
 
@@ -7,7 +6,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     gap: 20px;
+    padding-bottom: 20px;
 }
 
 .form-box {
@@ -16,4 +17,8 @@
 
 .box-mirror {
     flex-direction: column;
+}
+
+.form-error {
+    color: brown;
 }

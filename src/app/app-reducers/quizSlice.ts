@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {createNewQuestion, fetchQuestions} from "../../api/api";
+import {createNewQuestion, deleteListQuestion, fetchQuestions} from "../../api/api";
 import {IQuestion} from "../../models/questions";
 
 
@@ -9,7 +9,8 @@ export interface quizState {
     currentQuestion: IQuestion | null
     currentQuestionCounter: number
     score:number,
-    hasAnswer:boolean
+    hasAnswer:boolean,
+    createStatus:string
 }
 
 const initialState: quizState = {
@@ -18,7 +19,8 @@ const initialState: quizState = {
     currentQuestionCounter: 0,
     score: 0,
     hasAnswer:false,
-    isLoading:false
+    isLoading:false,
+    createStatus:''
 };
 
 export const getQuestions = createAsyncThunk(
@@ -37,15 +39,23 @@ export const createQuestion = createAsyncThunk(
     }
 )
 
+export const deleteQuestion = createAsyncThunk(
+    'quiz/deleteQuestion',
+    async (id: number, {dispatch}) => {
+        await deleteListQuestion(id)
+        return id
+    }
+)
+
+// @ts-ignore
+
 export const quizSlice = createSlice({
     name:'quiz',
     initialState,
     reducers: {
         nextQuestion: (state) => {
-            if(state.hasAnswer) {
-                state.currentQuestionCounter += 1
-                state.currentQuestion = state.questions[state.currentQuestionCounter]
-            }
+            state.currentQuestionCounter += 1
+            state.currentQuestion = state.questions[state.currentQuestionCounter]
         },
         previousQuestion: (state) => {
             state.currentQuestionCounter -= 1
@@ -56,12 +66,12 @@ export const quizSlice = createSlice({
             if(action.payload === state.currentQuestion?.correctAnswer) {
                 state.score += 1
             }
-            state.hasAnswer = true
-            state.currentQuestionCounter += 1
-            state.currentQuestion = state.questions[state.currentQuestionCounter]
-            state.hasAnswer = false
-            console.log(state.score)
-        }
+            // state.hasAnswer = true
+            // state.currentQuestionCounter += 1
+            // state.currentQuestion = state.questions[state.currentQuestionCounter]
+            // state.hasAnswer = false
+            // console.log(state.score)
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getQuestions.pending, (state) => {
@@ -72,9 +82,21 @@ export const quizSlice = createSlice({
             state.questions = payload
             state.isLoading = false
             state.currentQuestion = state.questions[state.currentQuestionCounter]
+            console.log(state.questions)
+        })
+        builder.addCase(createQuestion.pending, (state) => {
+            state.createStatus = 'creating'
         })
         builder.addCase(createQuestion.fulfilled, (state, {payload}) => {
             state.questions.push(payload)
+            state.createStatus = 'created'
+        })
+        builder.addCase(deleteQuestion.pending, (state, action) => {
+            state.createStatus = 'removing'
+        })
+        builder.addCase(deleteQuestion.fulfilled, (state, action) => {
+            state.questions = state.questions.filter(question => question.id !== action.payload)
+            state.createStatus = 'completed'
         })
     },
 });

@@ -2,6 +2,7 @@
     border: 1px solid #42a5f5;
     width: 50%;
     margin: 0 auto;
+    position: relative;
 }
 
 .quiz__length {
@@ -23,4 +24,15 @@
     justify-content: center;
     align-items: center;
     padding-top: 50px;
+}
+
+.MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root {
+    display: flex;
+    justify-content: space-between;
+}
+
+.quiz__next {
+    position: absolute;
+    right: 0;
+    bottom:38%;
 }
