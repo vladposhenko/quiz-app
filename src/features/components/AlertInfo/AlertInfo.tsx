@@ -1,14 +1,16 @@
 import React, {FC} from 'react';
 import {Alert} from "@mui/material";
+import {useAppSelector} from "../../../app/hooks";
 
 interface AlertInfoProps {
-
+    alertInfo:string
 }
 
-const AlertInfo:FC<AlertInfoProps> = () => {
+const AlertInfo:FC<AlertInfoProps> = ({alertInfo}) => {
+
     return (
         <div>
-            <Alert></Alert>
+            <Alert>{alertInfo}</Alert>
         </div>
     );
 };

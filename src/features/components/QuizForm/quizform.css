@@ -1,6 +1,27 @@
-.form {
-    width: 50%;
+.quiz-wrapp {
+
 }
+
+.backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.form {
+    width: 60%;
+    margin:0 auto;
+    z-index: 600;
+    border-radius: 8px;
+    top: 0;
+    left: 18%;
+    padding: 30px;
+}
+
+
 
 .form-box {
     display: flex;

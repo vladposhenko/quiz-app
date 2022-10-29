@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import "./score.css"
-import {Button} from "@mui/material";
+import {Box, Button} from "@mui/material";
 interface ScoreProps  {
     score: number,
     questionsLength:number,
@@ -8,10 +8,10 @@ interface ScoreProps  {
 
 const Score: FC<ScoreProps> = ({score,questionsLength }) => {
     return (
-        <div className="score-modal">
+        <Box sx={{ bgcolor:'primary.dark' }} className="score-modal">
             <p>Your Score : {score } / {questionsLength}</p>
             <Button variant="contained" color="success"  onClick={() => window.location.reload()}>Start Again</Button>
-        </div>
+        </Box>
     );
 };
 

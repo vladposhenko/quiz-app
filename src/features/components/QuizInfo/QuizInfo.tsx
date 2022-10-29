@@ -6,6 +6,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import {deleteQuestion} from "../../../app/app-reducers/quizSlice";
 import Loader from "../Loader/Loader";
 import Typography from "@mui/material/Typography";
+import './quizinfo.css'
 interface quizInfoProps {
     questions: IQuestion[]
 }
@@ -17,26 +18,34 @@ const QuizInfo: FC<quizInfoProps> = ({questions}) => {
     return (
         <div className="quiz__info">
             <Typography sx={{color:'text.primary', marginBottom: '2rem'}} variant="h4">Questions</Typography>
-            <List sx={{ height: "700px", overflowY:'auto' }}>
+            <List sx={{ height: "700px", overflowY:'auto', gap:'50px', display:'flex',flexDirection:'column' }}>
                 {questions?.map((q, i) => (
-                        <ListItem sx={{width: '100%', borderBottom: '1px solid #000', display:'flex', flexDirection: 'column'}}>
+                        <ListItem sx={{width: '100%',
+                            borderBottom: '1px solid #000',
+                            display:'flex',
+                            flexDirection: 'column',
+                        }}>
                             <div style={{borderBottom: '1px solid #000', width: '100%', display:'flex',
                                 justifyContent:'space-between', alignItems:'center'}}>
-                                <Typography sx={{color: 'text.primary', marginBottom:'20px'}}
+                                <Typography sx={{color: 'text.primary', marginBottom:'20px', textAlign:'center'}}
                                             variant="overline">{i+1}. {q.title}</Typography>
                                 <Button
                                         sx={{height: '30px'}}
                                         variant="contained" size="small"
-                                        onClick={() => dispatch(deleteQuestion(q.id))}>DELETE</Button>
+                                        onClick={() => {
+                                            window.scrollBy(0,0)
+                                            dispatch(deleteQuestion(q.id))
+                                        }}>DELETE</Button>
                             </div>
                             <CodeMirror
+                                style={{width: '100%', textAlign:'center'}}
                                 theme={palette.mode}
                                 value={q.task}
-                                width="550px"
+                                width="100%"
                             />
-                            { q.answers.map(a =>
+                            { q.answers.map((a, i) =>
                                 <Button sx={{width: '100%'}}
-                                        color={a === q.correctAnswer ? 'success' : 'primary'}
+                                        color={a === q.correctAnswers.find((el) => el === a) ? 'success' : 'primary'}
                                         variant='contained'>{a}</Button>
                             ) }
                         </ListItem>

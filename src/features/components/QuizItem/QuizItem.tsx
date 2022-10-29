@@ -26,6 +26,7 @@ const QuizItem: FC<QuizItemProps> = ({ dispatch,
                                          hasAnswer}) => {
 
     const [isUserAnswered, setIsUserAnswered] = useState(false)
+    const [userAnswers, setUserAnswers] = useState<Array<string>>([])
     const {palette} = useTheme()
     return (
         <div className="quiz">
@@ -53,13 +54,14 @@ const QuizItem: FC<QuizItemProps> = ({ dispatch,
                 />
             </div>
             <div className="quiz__buttons">
-                { currentQuestion?.answers.map((a) => <Button
+                { currentQuestion?.answers.map((a, i) => <Button
                     onClick={() => {
-                        dispatch(checkAnswer(a))
+                        setUserAnswers([...userAnswers, a])
                         setIsUserAnswered(true)
-                    }}
-                    className="quiz__btn"
 
+                    }}
+                    disabled={a === userAnswers.find(el => el === a)}
+                    className="quiz__btn"
                     variant="contained">{a}</Button>) }
             </div>
             {isUserAnswered &&
@@ -67,6 +69,8 @@ const QuizItem: FC<QuizItemProps> = ({ dispatch,
                     <Button sx={btnStyle}
                             variant="contained"
                             onClick={() => {
+                        dispatch(checkAnswer(userAnswers))
+                        setUserAnswers([])
                         dispatch(nextQuestion())
                         setIsUserAnswered(false)
                     }}>Next</Button>

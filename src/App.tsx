@@ -9,6 +9,7 @@ import {createTheme, IconButton, ThemeProvider, useTheme} from "@mui/material";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import {amber, purple} from "@mui/material/colors";
+import LoginPage from "./features/pages/LoginPage/LoginPage";
 
 
 
@@ -62,6 +63,7 @@ function App() {
                     <Routes>
                         <Route path="" element={<HomePage/>}/>
                         <Route path="admin" element={<AdminPage/>}/>
+                        <Route path="login" element={<LoginPage/>}/>
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>
                 </BrowserRouter>

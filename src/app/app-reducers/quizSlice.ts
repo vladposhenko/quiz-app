@@ -10,8 +10,10 @@ export interface quizState {
     currentQuestionCounter: number
     score:number,
     hasAnswer:boolean,
-    createStatus:string
+    createStatus:string,
+    isAlertVisible:boolean
 }
+
 
 const initialState: quizState = {
     questions: [],
@@ -20,7 +22,8 @@ const initialState: quizState = {
     score: 0,
     hasAnswer:false,
     isLoading:false,
-    createStatus:''
+    createStatus:'',
+    isAlertVisible:false
 };
 
 export const getQuestions = createAsyncThunk(
@@ -34,6 +37,7 @@ export const getQuestions = createAsyncThunk(
 export const createQuestion = createAsyncThunk(
     'quiz/createQuestion',
     async (values: IQuestion) => {
+        debugger;
         const response = await createNewQuestion(values)
         return values
     }
@@ -63,14 +67,21 @@ export const quizSlice = createSlice({
             state.hasAnswer = true
         },
         checkAnswer: (state,action) => {
-            if(action.payload === state.currentQuestion?.correctAnswer) {
-                state.score += 1
+            let userTrueAnswers = 0;
+            let userWrongAnswer = 0;
+            for(let i = 0; i < state.currentQuestion?.correctAnswers.length!; i++) {
+                for(let j = 0; j < action.payload.length; j++) {
+                    if(state.currentQuestion?.correctAnswers[i] === action.payload[j]) {
+                        userTrueAnswers++
+                    } else {
+                        userWrongAnswer++
+                    }
+                }
             }
-            // state.hasAnswer = true
-            // state.currentQuestionCounter += 1
-            // state.currentQuestion = state.questions[state.currentQuestionCounter]
-            // state.hasAnswer = false
-            // console.log(state.score)
+            if(userTrueAnswers === state.currentQuestion?.correctAnswers.length!) {
+                state.score++
+            }
+            console.log(state.score)
         },
     },
     extraReducers: (builder) => {
@@ -96,7 +107,7 @@ export const quizSlice = createSlice({
         })
         builder.addCase(deleteQuestion.fulfilled, (state, action) => {
             state.questions = state.questions.filter(question => question.id !== action.payload)
-            state.createStatus = 'completed'
+            state.createStatus = 'completed';
         })
     },
 });
