@@ -14,6 +14,8 @@ export const loginSlice = createSlice({
                 localStorage.setItem('token', 'adswetr234ss^&#$2werewre"')
                 state.token = "adswetr234ss^&#$2werewre"
                 toast.success('login successfully')
+            } else {
+                toast.error('Password or email is wrong')
             }
         },
         logOutFromAdmin:(state) => {
