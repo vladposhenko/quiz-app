@@ -3,6 +3,7 @@ import "./score.css"
 import {Box, Button} from "@mui/material";
 import {useAppDispatch} from "../../../app/hooks";
 import {restartQuiz} from "../../../app/app-reducers/quizSlice";
+
 interface ScoreProps  {
     score: number,
     questionsLength:number,

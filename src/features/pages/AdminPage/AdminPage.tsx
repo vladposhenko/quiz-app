@@ -7,13 +7,10 @@ import {getQuestions} from "../../../app/app-reducers/quizSlice";
 import Loader from "../../components/Loader/Loader";
 import {useNavigate} from "react-router-dom";
 import AdminPanel from "../../components/AdminPanel/AdminPanel";
-import AlertInfo from "../../components/AlertInfo/AlertInfo";
 const AdminPage = () => {
     const dispatch = useAppDispatch()
     const questions = useAppSelector(state => state.quiz.questions)
     const isLoading = useAppSelector(state => state.quiz.isLoading)
-    const token = useAppSelector(state => state.login.token)
-    const isAlertVisible = useAppSelector(state => state.quiz.isAlertVisible)
     const navigate = useNavigate()
     useEffect(() => {
         dispatch(getQuestions())

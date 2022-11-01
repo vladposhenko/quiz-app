@@ -5,7 +5,7 @@ import Loader from "../Loader/Loader";
 import {useAppDispatch, useAppSelector} from "../../../app/hooks";
 import {logOutFromAdmin} from "../../../app/app-reducers/loginSlice";
 import {useNavigate} from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+
 
 
 const AdminPanel = () => {

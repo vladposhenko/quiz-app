@@ -52,6 +52,7 @@ const QuizItem: FC<QuizItemProps> = ({   dispatch,
             </div>
             <div className="quiz__buttons">
                 { currentQuestion?.answers.map((a, i) => <Button
+                    key={a}
                     onClick={() => {
                         setUserAnswers([...userAnswers, a])
                         setIsUserAnswered(true)

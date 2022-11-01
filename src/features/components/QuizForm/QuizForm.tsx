@@ -77,8 +77,9 @@ const QuizForm:FC<QuizFormProps> = ({active, setActive, question}) => {
                         />
                         <div>
                             {answersCount.map((a:any) => (
-                                <>
-                                    <QuizBox value={formik.values?.answers[a]}
+                                <React.Fragment key={a}>
+                                    <QuizBox
+                                             value={formik.values?.answers[a]}
                                              title={`Answer ${a + 1}:`}
                                              label={"Answer " +  (a + 1)}
                                              name={"answers[" + a + "]"}
@@ -86,7 +87,7 @@ const QuizForm:FC<QuizFormProps> = ({active, setActive, question}) => {
                                              errors={false}
                                     />
                                     <Divider/>
-                                </>
+                                </React.Fragment>
                             ))}
                         </div>
                         <QuizBox value={countOfCorrectAnswers}
@@ -99,8 +100,9 @@ const QuizForm:FC<QuizFormProps> = ({active, setActive, question}) => {
                         />
                         <Divider/>
                         {correctAnswers.map((a:any) => (
-                            <>
-                                <QuizBox value={formik.values?.correctAnswers[a]}
+                            <React.Fragment key={a}>
+                                <QuizBox
+                                         value={formik.values?.correctAnswers[a]}
                                          title={`Correct Answer ${a + 1}:`}
                                          label={"CorrectAnswer " +  (a + 1)}
                                          name={"correctAnswers[" + a + "]"}
@@ -108,7 +110,7 @@ const QuizForm:FC<QuizFormProps> = ({active, setActive, question}) => {
                                          errors={false}
                                 />
                                 <Divider/>
-                            </>
+                            </React.Fragment>
                         ))}
                         <Button style={{width: '100%', marginTop:"30px" }}
                                 className="submitBtn"

@@ -1,18 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HomePage from "./features/pages/HomePage/HomePage";
 import AdminPage from "./features/pages/AdminPage/AdminPage";
 import NotFoundPage from "./features/pages/NotFoundPage";
 import Header from "./features/components/Header/Header";
-import {createTheme, IconButton, ThemeProvider, useTheme} from "@mui/material";
+import {createTheme, IconButton, ThemeProvider} from "@mui/material";
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import {amber, purple} from "@mui/material/colors";
+import {purple} from "@mui/material/colors";
 import LoginPage from "./features/pages/LoginPage/LoginPage";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
 
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });

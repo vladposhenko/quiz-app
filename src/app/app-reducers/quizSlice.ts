@@ -106,7 +106,6 @@ export const quizSlice = createSlice({
             state.questions = payload
             state.isLoading = false
             state.currentQuestion = state.questions[state.currentQuestionCounter]
-            console.log(state.questions)
         })
         builder.addCase(createQuestion.pending, (state) => {
             state.createStatus = 'creating'
