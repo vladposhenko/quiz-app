@@ -15,16 +15,13 @@ interface QuizItemProps {
     hasAnswer:boolean
 }
 
-const btnStyle = {
 
-}
-
-const QuizItem: FC<QuizItemProps> = ({ dispatch,
+const QuizItem: FC<QuizItemProps> = ({   dispatch,
                                          currentQuestion,
                                          currentQuestionCounter,
                                          questions,
-                                         hasAnswer}) => {
-
+                                         hasAnswer
+}) => {
     const [isUserAnswered, setIsUserAnswered] = useState(false)
     const [userAnswers, setUserAnswers] = useState<Array<string>>([])
     const {palette} = useTheme()
@@ -58,7 +55,6 @@ const QuizItem: FC<QuizItemProps> = ({ dispatch,
                     onClick={() => {
                         setUserAnswers([...userAnswers, a])
                         setIsUserAnswered(true)
-
                     }}
                     disabled={a === userAnswers.find(el => el === a)}
                     className="quiz__btn"
@@ -66,7 +62,7 @@ const QuizItem: FC<QuizItemProps> = ({ dispatch,
             </div>
             {isUserAnswered &&
                 <div className="quiz__next">
-                    <Button sx={btnStyle}
+                    <Button
                             variant="contained"
                             onClick={() => {
                         dispatch(checkAnswer(userAnswers))

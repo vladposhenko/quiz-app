@@ -7,9 +7,15 @@ export function fetchQuestions () {
 }
 
 export function createNewQuestion (question: IQuestion) {
+    debugger;
     return axios.post(BASE_URL,question)
 }
 
 export function deleteListQuestion (id: number) {
     return axios.delete(BASE_URL + id)
+}
+
+export function editListQuestion (id: number, body:any) {
+    debugger;
+    return axios.put(BASE_URL + id, body)
 }

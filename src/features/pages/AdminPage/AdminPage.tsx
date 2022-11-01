@@ -30,9 +30,6 @@ const AdminPage = () => {
                 {isLoading
                 ? <Loader/>
                 : (<>
-                            {isAlertVisible &&
-                                <AlertInfo alertInfo="Created"/>
-                            }
                             <QuizInfo questions={questions}/>
                     </>
                     )}

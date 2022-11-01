@@ -10,7 +10,8 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import {amber, purple} from "@mui/material/colors";
 import LoginPage from "./features/pages/LoginPage/LoginPage";
-
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -67,6 +68,7 @@ function App() {
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>
                 </BrowserRouter>
+                <ToastContainer theme={mode} draggable />
             </ThemeProvider>
         </ColorModeContext.Provider>
     </div>

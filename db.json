@@ -1,0 +1,112 @@
+{
+  "questions": [
+    {
+      "title": "Do you know what will be the output of this code?",
+      "task": "console.log(1 +  '2' + '2');",
+      "answers": [
+        "122",
+        "322",
+        "NaN2",
+        "NaN"
+      ],
+      "correctAnswers": [
+        "322",
+        "32"
+      ],
+      "id": "1"
+    },
+    {
+      "title": "Do you know what will be the output of this code?",
+      "task": "console.log(0.1 + 0.2 == 0.3);",
+      "answers": [
+        "false",
+        "true"
+      ],
+      "correctAnswers": [
+        "false"
+      ],
+      "id": "2"
+    },
+    {
+      "title": "Do you know what will be the output of this code?",
+      "task": "console.log(typeof NaN);",
+      "answers": [
+        "NaN",
+        "number",
+        "null",
+        "undefined"
+      ],
+      "correctAnswers": [
+        "number"
+      ],
+      "id": "3"
+    },
+    {
+      "title": "Do you know what will be the output of this code?",
+      "task": "console.log(typeof typeof 1);",
+      "answers": [
+        "string",
+        "number",
+        "1",
+        "true"
+      ],
+      "correctAnswers": [
+        "string"
+      ],
+      "id": "4"
+    },
+    {
+      "title": "Do you know what will be the output of this code?",
+      "task": "const isTrue = true == [];\nconst isFalse = true == ![];\nconsole.log(isTrue + isFalse)",
+      "answers": [
+        "1",
+        "0",
+        "'true'",
+        "true"
+      ],
+      "id": "5",
+      "correctAnswers": [
+        "0"
+      ]
+    },
+    {
+      "id": 38,
+      "title": "Do you know what will be the output of this code?",
+      "task": "console.log(false && 1 && [])",
+      "correctAnswers": [
+        "false"
+      ],
+      "answers": [
+        "false",
+        "1",
+        "[]"
+      ]
+    },
+    {
+      "id": 57,
+      "title": "Do you know what will be the output of this code?",
+      "task": "console.log(' ' && true && 5)",
+      "correctAnswers": [
+        "5"
+      ],
+      "answers": [
+        "' '",
+        "true",
+        "5"
+      ]
+    },
+    {
+      "id": 28,
+      "title": " DO YOU KNOW WHAT WILL BE THE OUTPUT OF THIS CODE?",
+      "task": "function returnY() {\n    'use strict'\n    y = 123\n    return y\n}\nreturnY()",
+      "correctAnswers": [
+        "Uncaught ReferenceError"
+      ],
+      "answers": [
+        "undefined",
+        "null",
+        "Uncaught ReferenceError"
+      ]
+    }
+  ]
+}

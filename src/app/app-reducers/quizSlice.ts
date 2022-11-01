@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {createNewQuestion, deleteListQuestion, fetchQuestions} from "../../api/api";
+import {createNewQuestion, deleteListQuestion, editListQuestion, fetchQuestions} from "../../api/api";
 import {IQuestion} from "../../models/questions";
-
+import { toast } from 'react-toastify';
 
 export interface quizState {
     isLoading: boolean
@@ -11,7 +11,8 @@ export interface quizState {
     score:number,
     hasAnswer:boolean,
     createStatus:string,
-    isAlertVisible:boolean
+    isAlertVisible:boolean,
+    notifyInfo:string
 }
 
 
@@ -23,7 +24,8 @@ const initialState: quizState = {
     hasAnswer:false,
     isLoading:false,
     createStatus:'',
-    isAlertVisible:false
+    isAlertVisible:false,
+    notifyInfo:'',
 };
 
 export const getQuestions = createAsyncThunk(
@@ -37,7 +39,6 @@ export const getQuestions = createAsyncThunk(
 export const createQuestion = createAsyncThunk(
     'quiz/createQuestion',
     async (values: IQuestion) => {
-        debugger;
         const response = await createNewQuestion(values)
         return values
     }
@@ -48,6 +49,14 @@ export const deleteQuestion = createAsyncThunk(
     async (id: number, {dispatch}) => {
         await deleteListQuestion(id)
         return id
+    }
+)
+
+export const editQuestion = createAsyncThunk(
+    'quiz/editQuestion',
+    async(values: IQuestion) => {
+        const response = await editListQuestion(values.id, values)
+        return values
     }
 )
 
@@ -66,6 +75,11 @@ export const quizSlice = createSlice({
             state.currentQuestion = state.questions[state.currentQuestionCounter]
             state.hasAnswer = true
         },
+        restartQuiz: (state) => {
+            state.currentQuestionCounter = 0;
+            state.currentQuestion = state.questions[state.currentQuestionCounter]
+            state.score = 0
+        },
         checkAnswer: (state,action) => {
             let userTrueAnswers = 0;
             let userWrongAnswer = 0;
@@ -81,7 +95,6 @@ export const quizSlice = createSlice({
             if(userTrueAnswers === state.currentQuestion?.correctAnswers.length!) {
                 state.score++
             }
-            console.log(state.score)
         },
     },
     extraReducers: (builder) => {
@@ -101,6 +114,8 @@ export const quizSlice = createSlice({
         builder.addCase(createQuestion.fulfilled, (state, {payload}) => {
             state.questions.push(payload)
             state.createStatus = 'created'
+            state.notifyInfo = 'created successfully'
+            toast.success(state.notifyInfo)
         })
         builder.addCase(deleteQuestion.pending, (state, action) => {
             state.createStatus = 'removing'
@@ -108,9 +123,18 @@ export const quizSlice = createSlice({
         builder.addCase(deleteQuestion.fulfilled, (state, action) => {
             state.questions = state.questions.filter(question => question.id !== action.payload)
             state.createStatus = 'completed';
+            state.notifyInfo = 'deleted successfully'
+            toast.success(state.notifyInfo)
+        })
+        builder.addCase(editQuestion.pending, (state, action) => {
+            state.createStatus = 'editing';
+        })
+        builder.addCase(editQuestion.fulfilled, (state, {payload}) => {
+            state.questions[+payload.id] = payload;
+            state.createStatus = 'completed';
         })
     },
 });
 
-export const { nextQuestion, previousQuestion, checkAnswer } = quizSlice.actions
+export const { nextQuestion, previousQuestion, checkAnswer, restartQuiz } = quizSlice.actions
 export default quizSlice.reducer;
