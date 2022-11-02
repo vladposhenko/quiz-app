@@ -52,7 +52,7 @@ const QuizInfo: FC<quizInfoProps> = ({questions}) => {
                                 </div>
                             </div>
                             <CodeMirror
-                                style={{width: '100%', textAlign:'center'}}
+                                style={{width: '100%'}}
                                 theme={palette.mode}
                                 value={q.task}
                                 width="100%"

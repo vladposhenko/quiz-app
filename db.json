@@ -1,19 +1,19 @@
 {
   "questions": [
     {
+      "id": "1",
       "title": "Do you know what will be the output of this code?",
       "task": "console.log(1 +  '2' + '2');",
+      "correctAnswers": [
+        "322",
+        "32"
+      ],
       "answers": [
         "122",
         "322",
         "NaN2",
         "NaN"
-      ],
-      "correctAnswers": [
-        "322",
-        "32"
-      ],
-      "id": "1"
+      ]
     },
     {
       "title": "Do you know what will be the output of this code?",
@@ -28,18 +28,18 @@
       "id": "2"
     },
     {
-      "title": "Do you know what will be the output of this code?",
+      "id": "3",
+      "title": "Do you know what will be the output of thisss code?",
       "task": "console.log(typeof NaN);",
+      "correctAnswers": [
+        "number"
+      ],
       "answers": [
         "NaN",
         "number",
         "null",
         "undefined"
-      ],
-      "correctAnswers": [
-        "number"
-      ],
-      "id": "3"
+      ]
     },
     {
       "title": "Do you know what will be the output of this code?",

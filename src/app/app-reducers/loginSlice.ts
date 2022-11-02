@@ -13,7 +13,7 @@ export const loginSlice = createSlice({
             if(payload.email === 'admin@gmail.com' && payload.password === 'admin123') {
                 localStorage.setItem('token', 'adswetr234ss^&#$2werewre"')
                 state.token = "adswetr234ss^&#$2werewre"
-                toast.success('login successfully')
+                toast.success('Login successfully')
             } else {
                 toast.error('Password or email is wrong')
             }

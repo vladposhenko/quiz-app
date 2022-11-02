@@ -129,7 +129,15 @@ export const quizSlice = createSlice({
             state.createStatus = 'editing';
         })
         builder.addCase(editQuestion.fulfilled, (state, {payload}) => {
-            state.questions[+payload.id] = payload;
+            state.questions = state.questions.map((q) => {
+                if(q.id == payload.id) {
+                    debugger;
+                    return payload
+                } else {
+                    return q
+                }
+            })
+            toast.success('Successfully edited')
             state.createStatus = 'completed';
         })
     },
